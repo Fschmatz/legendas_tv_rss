@@ -39,22 +39,10 @@ class _HomeState extends State<Home> {
     client.close();
   }
 
-
   int _currentIndex = 0;
-  /*final tabs = [
-    HomeBuilder(),
-    ChannelList(),
-    SettingsPage(),
-  ];*/
-
-  List<Widget> pageList = [];
 
   @override
   Widget build(BuildContext context) {
-
-    //pageList.add(HomeBuilder());
-    //pageList.add(ChannelList());
-    //pageList.add(SettingsPage());
 
     return Scaffold(
       appBar: AppBar(
@@ -119,8 +107,6 @@ class _HomeState extends State<Home> {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: true,
-        showUnselectedLabels: false,
         currentIndex: _currentIndex,
         elevation: 0.0,
         onTap: (index) {

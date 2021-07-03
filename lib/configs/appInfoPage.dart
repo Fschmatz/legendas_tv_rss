@@ -4,10 +4,10 @@ import 'package:url_launcher/url_launcher.dart';
 
 class AppInfoPage extends StatelessWidget {
 
-  _launchGithub()  {
+  /*_launchGithub()  {
     const url = '';
     launch(url);
-  }
+  }*/
 
   Color themeColorApp = Color(0xFFA590D5);
 
@@ -15,7 +15,7 @@ class AppInfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("App Info"),
+          title: Text("Informações"),
           elevation: 0,
         ),
         body: ListView(children: <Widget>[
@@ -39,9 +39,7 @@ class AppInfoPage extends StatelessWidget {
           const SizedBox(height: 15),
           const Divider(),
           ListTile(
-            leading: SizedBox(
-              height: 0.1,
-            ),
+            leading: Icon( Icons.info_outline),
             title: Text("Dev".toUpperCase(),
                 style: TextStyle(
                     fontSize: 13,
@@ -49,37 +47,17 @@ class AppInfoPage extends StatelessWidget {
                     color: themeColorApp)),
           ),
           ListTile(
-            leading: Icon( Icons.info_outline),
-            title: Text(
-              "HAMMERED AND REDONE: 0 Times !!!",
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-          ),
-          ListTile(
             leading: SizedBox(
               height: 0.1,
             ),
             title: Text(
-              "( This is The Way! )",
+              "Aplicativo criado usando Flutter e a linguagem Dart, usado para teste e aprendizado.",
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
           ),
-          ListTile(
-            leading: SizedBox(
-              height: 0.1,
-            ),
-            title: Text(
-              "Application created using Flutter and the Dart language, used for testing and learning.",
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-          ),
-          const Divider(),
+         /* const Divider(),
           ListTile(
             leading: SizedBox(
               height: 0.1,
@@ -97,7 +75,7 @@ class AppInfoPage extends StatelessWidget {
                 style: TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blue)),
-          ),
+          ),*/
           const Divider(),
           ListTile(
             leading: SizedBox(
@@ -112,7 +90,7 @@ class AppInfoPage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.messenger_outline),
             title: Text(
-              "I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched c-beams glitter in the dark near the Tannhäuser Gate. All those moments will be lost in time, like tears in rain. Time to die.\nRoy Batty - Rutger Hauer",
+              "I've seen things you people wouldn't believe.\nAttack ships on fire off the shoulder of Orion.\nI watched c-beams glitter in the dark near the Tannhäuser Gate.\nAll those moments will be lost in time, like tears in rain.\nTime to die.\n\nRoy Batty - Rutger Hauer",
               style: TextStyle(fontSize: 16),
             ),
           ),

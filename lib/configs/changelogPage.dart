@@ -17,7 +17,7 @@ class ChangelogPage extends StatelessWidget {
               leading: SizedBox(
                 height: 0.1,
               ),
-              title: Text("Current Version".toUpperCase(),
+              title: Text("Versão Atual".toUpperCase(),
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w700,
@@ -36,7 +36,7 @@ class ChangelogPage extends StatelessWidget {
             leading: SizedBox(
               height: 0.1,
             ),
-            title: Text("Previous Versions".toUpperCase(),
+            title: Text("Versões Anteriores".toUpperCase(),
                 style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w700,

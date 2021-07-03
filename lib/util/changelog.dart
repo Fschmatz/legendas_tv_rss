@@ -1,28 +1,23 @@
 class Changelog{
 
-  static String appVersion = "0.2.0";
+  static String appVersion = "1.0.0";
   static String appName = "Legendas.TV RSS";
 
   static String changelogCurrent = '''  
-0.2.0
-
+1.0.0
+- Tecnicamente Funcional
 ''';
 
   static String changelogsOld = '''
-
-
 0.2.0
-- UI Created
-- Feed OK
+- UI
+- Feed Destaques
+- Feed Filmes
+- Feed Séries
 
 0.1.0
-- Project Start                                  
+- Início do projeto                              
 
-
-
-
-
-  (ಠ‿ಠ)  
 ''';
 
 }

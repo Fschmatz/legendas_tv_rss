@@ -53,7 +53,8 @@ class _NewsTileState extends State<NewsTile> {
                     child: Text(
                       widget.feed.formattedDate,
                       style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w600,
                           color:
                               Theme.of(context).accentColor.withOpacity(0.9)),
                     ),

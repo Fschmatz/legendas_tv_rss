@@ -25,7 +25,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Settings"),
+          title: Text("Configurações"),
           elevation: 0,
         ),
         body: SingleChildScrollView(
@@ -51,7 +51,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ListTile(
                 leading: SizedBox(height: 0.1,),
                 title:    Text(
-                    "About".toUpperCase(),
+                    "Sobre".toUpperCase(),
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
@@ -63,7 +63,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   Icons.info_outline,
                 ),
                 title: Text(
-                  "App Info",
+                  "Informações",
                   style: TextStyle(fontSize: 16),
                 ),
                 onTap: () {
@@ -99,7 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ListTile(
                 leading: SizedBox(height: 0.1,),
                 title:    Text(
-                    "General".toUpperCase(),
+                    "Geral".toUpperCase(),
                     style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w700,
@@ -109,7 +109,7 @@ class _SettingsPageState extends State<SettingsPage> {
               Consumer<ThemeNotifier>(
                 builder: (context, notifier, child) => SwitchListTile(
                     title: Text(
-                      "Dark Theme",
+                      "Tema Escuro",
                       style: TextStyle(fontSize: 16),
                     ),
                     secondary: Icon(Icons.brightness_6_outlined),

@@ -4,14 +4,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 //CLARO
 ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xFFD2448D),
-    accentColor: Color(0xFF8d79bd),
+    primaryColor: Color(0xFFFFFFFF),
+    accentColor: Colors.deepPurple,
     scaffoldBackgroundColor: Color(0xFFFFFFFF),
     cardTheme: CardTheme(
       color: Color(0xFFF1F1F1),
     ),
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFFF9F9F9),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedIconTheme: IconThemeData(color: Colors.deepPurple),
+      selectedLabelStyle: TextStyle(color: Colors.deepPurple),
+      showSelectedLabels: true,
+      showUnselectedLabels: false,
+      backgroundColor: Color(0xFFE5E5E5),
     ),
     bottomAppBarColor: Color(0xFFE6E6E6),
     bottomSheetTheme:
@@ -28,6 +35,13 @@ ThemeData dark = ThemeData(
     ),
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFF2D2D2F),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      selectedIconTheme: IconThemeData(color: Color(0xFFA590D5)),
+      selectedLabelStyle: TextStyle(color: Color(0xFFA590D5)),
+      showSelectedLabels: true,
+      showUnselectedLabels: false,
+      backgroundColor: Color(0xFF151517),
     ),
     bottomAppBarColor: Color(0xFF171719),
     bottomSheetTheme:
