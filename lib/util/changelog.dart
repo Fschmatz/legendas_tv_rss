@@ -9,6 +9,11 @@ class Changelog{
 ''';
 
   static String changelogsOld = '''
+0.3.0
+- Ícone
+- Feed Cartoons
+- Feed Últimos
+
 0.2.0
 - UI
 - Feed Destaques

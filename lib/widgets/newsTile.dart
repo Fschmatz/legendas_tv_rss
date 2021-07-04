@@ -13,6 +13,7 @@ class NewsTile extends StatefulWidget {
 }
 
 class _NewsTileState extends State<NewsTile> {
+
   //URL LAUNCHER
   _launchBrowser(String url) async {
     if (await launch(url)) {
@@ -67,7 +68,7 @@ class _NewsTileState extends State<NewsTile> {
                       },
                       child: Icon(
                         Icons.share_outlined,
-                        size: 17.0,
+                        size: 19,
                         color: Theme.of(context)
                             .textTheme
                             .headline6!

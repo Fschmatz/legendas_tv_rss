@@ -16,6 +16,9 @@ class _HomeState extends State<Home> {
   static const String destaques = 'http://legendas.tv/rss/destaques.rss';
   static const String filmes = 'http://legendas.tv/rss/destaques_filmes.rss';
   static const String series = 'http://legendas.tv/rss/destaques_series.rss';
+  static const String ultimos = 'http://legendas.tv/rss/ultimas_legendas.rss';
+  static const String cartoons =
+      'http://legendas.tv/rss/destaques_cartoons.rss';
   String feedSelecionado = '';
 
   List<RssItem> articlesList = [];
@@ -43,7 +46,6 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -84,19 +86,18 @@ class _HomeState extends State<Home> {
                     children: [
                       ListView.separated(
                         separatorBuilder: (context, index) {
-                            return const Divider();
+                          return const Divider();
                         },
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: articlesList.length,
                         itemBuilder: (context, index) {
-
-                            return NewsTile(
-                              feed: Feed(
-                                  data: articlesList[index].pubDate!.toString(),
-                                  title: articlesList[index].title!,
-                                  link: articlesList[index].link!),
-                            );
+                          return NewsTile(
+                            feed: Feed(
+                                data: articlesList[index].pubDate!.toString(),
+                                title: articlesList[index].title!,
+                                link: articlesList[index].link!),
+                          );
                         },
                       ),
                       const SizedBox(
@@ -105,20 +106,24 @@ class _HomeState extends State<Home> {
                     ]),
               ),
       ),
-
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
+        type: BottomNavigationBarType.fixed,
         elevation: 0.0,
         onTap: (index) {
           setState(() {
             loading = true;
             _currentIndex = index;
-            if (index == 0){
+            if (index == 0) {
               feedSelecionado = destaques;
-            }else if(index == 1){
+            } else if (index == 1) {
               feedSelecionado = filmes;
-            }else if(index == 2){
+            } else if (index == 2) {
               feedSelecionado = series;
+            } else if (index == 3) {
+              feedSelecionado = cartoons;
+            } else if (index == 4) {
+              feedSelecionado = ultimos;
             }
           });
           getRssData(feedSelecionado);
@@ -135,6 +140,14 @@ class _HomeState extends State<Home> {
           BottomNavigationBarItem(
             icon: Icon(Icons.tv_outlined),
             label: 'Séries',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.brush_outlined),
+            label: 'Cartoons',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.access_time_outlined),
+            label: 'Últimos',
           ),
         ],
       ),
