@@ -139,6 +139,11 @@ class _HomeState extends State<Home> {
             child: GNav(
               rippleColor: Theme.of(context).accentColor.withOpacity(0.4),
               hoverColor: Theme.of(context).accentColor.withOpacity(0.4),
+              color: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .color!
+                  .withOpacity(0.7),
               gap: 5,
               activeColor: Theme.of(context).accentColor,
               iconSize: 20,
