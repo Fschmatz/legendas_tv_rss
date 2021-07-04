@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:http/http.dart' as http;
 import 'package:legendas_tv_rss/classes/feed.dart';
 import 'package:legendas_tv_rss/configs/settingsPage.dart';
@@ -20,14 +21,12 @@ class _HomeState extends State<Home> {
   static const String cartoons =
       'http://legendas.tv/rss/destaques_cartoons.rss';
   String feedSelecionado = '';
-  String nomePagina = '';
 
   List<RssItem> articlesList = [];
   bool loading = true;
 
   @override
   void initState() {
-    nomePagina = 'Destaques';
     feedSelecionado = destaques;
     getRssData(feedSelecionado);
     super.initState();
@@ -46,33 +45,37 @@ class _HomeState extends State<Home> {
 
   int _currentIndex = 0;
 
+  /* static const TextStyle optionStyle =
+  TextStyle(fontSize: 16, fontWeight: FontWeight.w600);
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'Destaques',
+      style: optionStyle,
+    ),
+    Text(
+      'Filmes',
+      style: optionStyle,
+    ),
+    Text(
+      'Séries',
+      style: optionStyle,
+    ),
+    Text(
+      'Cartoons',
+      style: optionStyle,
+    ),
+    Text(
+      'Novidades',
+      style: optionStyle,
+    ),
+  ];*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: RichText(
-          text: TextSpan(
-            children: <TextSpan>[
-              TextSpan(
-                  text: 'Legendas.TV  ',
-                  style: TextStyle(
-                      color: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .color!
-                          .withOpacity(0.9),
-                      fontSize: 19,
-                      fontWeight: FontWeight.w700)),
-              TextSpan(
-                  text: nomePagina,
-                  style: TextStyle(
-                      color: Theme.of(context).hintColor,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w600)),
-            ],
-          ),
-        ),
+        title: Text('Legendas.TV'),
         actions: [
           IconButton(
               icon: Icon(
@@ -129,56 +132,69 @@ class _HomeState extends State<Home> {
                     ]),
               ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        showSelectedLabels: false,
-        currentIndex: _currentIndex,
-        type: BottomNavigationBarType.fixed,
-        elevation: 0.0,
-        onTap: (index) {
-          setState(() {
-            loading = true;
-            _currentIndex = index;
-            if (index == 0) {
-              feedSelecionado = destaques;
-              nomePagina = 'Destaques';
-            } else if (index == 1) {
-              feedSelecionado = filmes;
-              nomePagina = 'Filmes';
-            } else if (index == 2) {
-              feedSelecionado = series;
-              nomePagina = 'Séries';
-            } else if (index == 3) {
-              feedSelecionado = cartoons;
-              nomePagina = 'Cartoons';
-            } else if (index == 4) {
-              feedSelecionado = novidades;
-              nomePagina = 'Novidades';
-            }
-          });
-          getRssData(feedSelecionado);
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.new_releases_outlined),
-            label: 'Destaques',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            child: GNav(
+              rippleColor: Theme.of(context).accentColor.withOpacity(0.4),
+              hoverColor: Theme.of(context).accentColor.withOpacity(0.4),
+              gap: 5,
+              activeColor: Theme.of(context).accentColor,
+              iconSize: 20,
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              duration: Duration(milliseconds: 400),
+              tabBackgroundColor:
+                  Theme.of(context).accentColor.withOpacity(0.3),
+              backgroundColor:
+                  Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
+              tabs: [
+                GButton(
+                  icon: Icons.priority_high_outlined,
+                  text: 'Destaques',
+                ),
+                GButton(
+                  icon: Icons.movie_creation_outlined,
+                  text: 'Filmes',
+                ),
+                GButton(
+                  icon: Icons.tv_outlined,
+                  text: 'Séries',
+                ),
+                GButton(
+                  icon: Icons.brush_outlined,
+                  text: 'Cartoons',
+                ),
+                GButton(
+                  icon: Icons.access_time_outlined,
+                  text: 'Novidades',
+                ),
+              ],
+              selectedIndex: _currentIndex,
+              onTabChange: (index) {
+                setState(() {
+                  loading = true;
+                  _currentIndex = index;
+                  if (index == 0) {
+                    feedSelecionado = destaques;
+                  } else if (index == 1) {
+                    feedSelecionado = filmes;
+                  } else if (index == 2) {
+                    feedSelecionado = series;
+                  } else if (index == 3) {
+                    feedSelecionado = cartoons;
+                  } else if (index == 4) {
+                    feedSelecionado = novidades;
+                  }
+                });
+                getRssData(feedSelecionado);
+              },
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.movie_creation_outlined),
-            label: 'Filmes',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.tv_outlined),
-            label: 'Séries',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.brush_outlined),
-            label: 'Cartoons',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.access_time_outlined),
-            label: 'Novidades',
-          ),
-        ],
+        ),
       ),
     );
   }

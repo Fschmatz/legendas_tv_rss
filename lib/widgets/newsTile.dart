@@ -13,7 +13,6 @@ class NewsTile extends StatefulWidget {
 }
 
 class _NewsTileState extends State<NewsTile> {
-
   //URL LAUNCHER
   _launchBrowser(String url) async {
     if (await launch(url)) {
@@ -56,19 +55,22 @@ class _NewsTileState extends State<NewsTile> {
                       style: TextStyle(
                           fontSize: 13,
                           fontWeight: FontWeight.w600,
-                          color:
-                              Theme.of(context).accentColor.withOpacity(0.9)),
+                          color: Theme.of(context)
+                              .textTheme
+                              .headline6!
+                              .color!
+                              .withOpacity(0.7)),
                     ),
                   ),
                   Container(
-                    width: 52,
+                    width: 55,
                     child: TextButton(
                       onPressed: () {
                         Share.share(widget.feed.link);
                       },
                       child: Icon(
                         Icons.share_outlined,
-                        size: 21,
+                        size: 20,
                         color: Theme.of(context)
                             .textTheme
                             .headline6!

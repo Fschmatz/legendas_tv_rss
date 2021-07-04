@@ -9,7 +9,7 @@ class AppInfoPage extends StatelessWidget {
     launch(url);
   }*/
 
-  Color themeColorApp = Color(0xFFA590D5);
+  Color themeColorApp = Color(0xFFD4669D);
 
   @override
   Widget build(BuildContext context) {
