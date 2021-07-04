@@ -16,16 +16,18 @@ class _HomeState extends State<Home> {
   static const String destaques = 'http://legendas.tv/rss/destaques.rss';
   static const String filmes = 'http://legendas.tv/rss/destaques_filmes.rss';
   static const String series = 'http://legendas.tv/rss/destaques_series.rss';
-  static const String ultimos = 'http://legendas.tv/rss/ultimas_legendas.rss';
+  static const String novidades = 'http://legendas.tv/rss/ultimas_legendas.rss';
   static const String cartoons =
       'http://legendas.tv/rss/destaques_cartoons.rss';
   String feedSelecionado = '';
+  String nomePagina = '';
 
   List<RssItem> articlesList = [];
   bool loading = true;
 
   @override
   void initState() {
+    nomePagina = 'Destaques';
     feedSelecionado = destaques;
     getRssData(feedSelecionado);
     super.initState();
@@ -49,7 +51,28 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Legendas.TV'),
+        title: RichText(
+          text: TextSpan(
+            children: <TextSpan>[
+              TextSpan(
+                  text: 'Legendas.TV  ',
+                  style: TextStyle(
+                      color: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .color!
+                          .withOpacity(0.9),
+                      fontSize: 19,
+                      fontWeight: FontWeight.w700)),
+              TextSpan(
+                  text: nomePagina,
+                  style: TextStyle(
+                      color: Theme.of(context).hintColor,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w600)),
+            ],
+          ),
+        ),
         actions: [
           IconButton(
               icon: Icon(
@@ -107,6 +130,7 @@ class _HomeState extends State<Home> {
               ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
         elevation: 0.0,
@@ -116,14 +140,19 @@ class _HomeState extends State<Home> {
             _currentIndex = index;
             if (index == 0) {
               feedSelecionado = destaques;
+              nomePagina = 'Destaques';
             } else if (index == 1) {
               feedSelecionado = filmes;
+              nomePagina = 'Filmes';
             } else if (index == 2) {
               feedSelecionado = series;
+              nomePagina = 'Séries';
             } else if (index == 3) {
               feedSelecionado = cartoons;
+              nomePagina = 'Cartoons';
             } else if (index == 4) {
-              feedSelecionado = ultimos;
+              feedSelecionado = novidades;
+              nomePagina = 'Novidades';
             }
           });
           getRssData(feedSelecionado);
@@ -147,7 +176,7 @@ class _HomeState extends State<Home> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.access_time_outlined),
-            label: 'Últimos',
+            label: 'Novidades',
           ),
         ],
       ),

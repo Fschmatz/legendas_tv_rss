@@ -61,14 +61,14 @@ class _NewsTileState extends State<NewsTile> {
                     ),
                   ),
                   Container(
-                    width: 50,
+                    width: 52,
                     child: TextButton(
                       onPressed: () {
                         Share.share(widget.feed.link);
                       },
                       child: Icon(
                         Icons.share_outlined,
-                        size: 19,
+                        size: 21,
                         color: Theme.of(context)
                             .textTheme
                             .headline6!

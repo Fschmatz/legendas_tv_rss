@@ -16,7 +16,7 @@ ThemeData light = ThemeData(
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedIconTheme: IconThemeData(color: Colors.deepPurple),
       selectedLabelStyle: TextStyle(color: Colors.deepPurple),
-      showSelectedLabels: true,
+      showSelectedLabels: false,
       showUnselectedLabels: false,
       backgroundColor: Color(0xFFE5E5E5),
     ),
@@ -28,7 +28,7 @@ ThemeData light = ThemeData(
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
     primaryColor: Color(0xFF202022),
-    accentColor: Color(0xFFA590D5),
+    accentColor: Color(0xFFaf98e3),
     scaffoldBackgroundColor: Color(0xFF202022),
     cardTheme: CardTheme(
       color: Color(0xFF29292B),
@@ -39,7 +39,7 @@ ThemeData dark = ThemeData(
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       selectedIconTheme: IconThemeData(color: Color(0xFFA590D5)),
       selectedLabelStyle: TextStyle(color: Color(0xFFA590D5)),
-      showSelectedLabels: true,
+      showSelectedLabels: false,
       showUnselectedLabels: false,
       backgroundColor: Color(0xFF151517),
     ),
