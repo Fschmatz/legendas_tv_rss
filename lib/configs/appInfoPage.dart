@@ -4,12 +4,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 class AppInfoPage extends StatelessWidget {
 
-  /*_launchGithub()  {
-    const url = '';
+  _launchGithub()  {
+    const url = 'https://github.com/Fschmatz/legendas_tv_rss';
     launch(url);
-  }*/
+  }
 
-  Color themeColorApp = Color(0xFFD4669D);
+  Color themeColorApp = Color(0xFF3AA680);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class AppInfoPage extends StatelessWidget {
           const SizedBox(height: 20),
           CircleAvatar(
             radius: 55,
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.redAccent,
             child: CircleAvatar(
               radius: 50,
               backgroundImage: AssetImage('assets/avatar.jpg'),
@@ -57,7 +57,7 @@ class AppInfoPage extends StatelessWidget {
               ),
             ),
           ),
-         /* const Divider(),
+          const Divider(),
           ListTile(
             leading: SizedBox(
               height: 0.1,
@@ -69,13 +69,13 @@ class AppInfoPage extends StatelessWidget {
                     color: themeColorApp)),
           ),
           ListTile(
-            //onTap: () {_launchGithub();},
+            onTap: () {_launchGithub();},
             leading: Icon(Icons.open_in_new_outlined),
             title: Text("View on GitHub",
                 style: TextStyle(
                     decoration: TextDecoration.underline,
                     color: Colors.blue)),
-          ),*/
+          ),
           const Divider(),
           ListTile(
             leading: SizedBox(
@@ -90,7 +90,7 @@ class AppInfoPage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.messenger_outline),
             title: Text(
-              "I've seen things you people wouldn't believe.\nAttack ships on fire off the shoulder of Orion.\nI watched c-beams glitter in the dark near the Tannhäuser Gate.\nAll those moments will be lost in time, like tears in rain.\nTime to die.\n\nRoy Batty - Rutger Hauer",
+              "I've seen things you people wouldn't believe.\nAttack ships on fire off the shoulder of Orion.\nI watched c-beams glitter in the dark near the Tannhäuser Gate.\nAll those moments will be lost in time, like tears in rain. Time to die.\n\nRoy Batty - Rutger Hauer",
               style: TextStyle(fontSize: 16),
             ),
           ),

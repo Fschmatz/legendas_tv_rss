@@ -3,7 +3,7 @@ import 'package:legendas_tv_rss/util/changelog.dart';
 
 class ChangelogPage extends StatelessWidget {
 
-  Color themeColorApp = Color(0xFFD4669D);
+  Color themeColorApp = Color(0xFF3AA680);
 
   @override
   Widget build(BuildContext context) {

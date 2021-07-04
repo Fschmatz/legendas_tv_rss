@@ -4,8 +4,9 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:http/http.dart' as http;
 import 'package:legendas_tv_rss/classes/feed.dart';
 import 'package:legendas_tv_rss/configs/settingsPage.dart';
-import 'package:legendas_tv_rss/widgets/newsTile.dart';
+import 'package:legendas_tv_rss/widgets/feedTile.dart';
 import 'package:webfeed/webfeed.dart';
+import 'package:jiffy/jiffy.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _HomeState extends State<Home> {
   static const String cartoons =
       'http://legendas.tv/rss/destaques_cartoons.rss';
   String feedSelecionado = '';
-
+  int _currentIndex = 0;
   List<RssItem> articlesList = [];
   bool loading = true;
 
@@ -43,32 +44,15 @@ class _HomeState extends State<Home> {
     client.close();
   }
 
-  int _currentIndex = 0;
-
-  /* static const TextStyle optionStyle =
-  TextStyle(fontSize: 16, fontWeight: FontWeight.w600);
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Destaques',
-      style: optionStyle,
-    ),
-    Text(
-      'Filmes',
-      style: optionStyle,
-    ),
-    Text(
-      'Séries',
-      style: optionStyle,
-    ),
-    Text(
-      'Cartoons',
-      style: optionStyle,
-    ),
-    Text(
-      'Novidades',
-      style: optionStyle,
-    ),
-  ];*/
+  bool dataDiferente(int index){
+    return Jiffy(articlesList[index == 0
+        ? index
+        : index - 1]
+        .pubDate!)
+        .format("dd/MM/yyyy") !=
+        Jiffy(articlesList[index].pubDate!)
+            .format("dd/MM/yyyy");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,11 +102,24 @@ class _HomeState extends State<Home> {
                         shrinkWrap: true,
                         itemCount: articlesList.length,
                         itemBuilder: (context, index) {
-                          return NewsTile(
-                            feed: Feed(
-                                data: articlesList[index].pubDate!.toString(),
-                                title: articlesList[index].title!,
-                                link: articlesList[index].link!),
+                          return Column(
+                            children: [
+                              Visibility(
+                                  visible: index == 0,
+                                  child: dataTile(
+                                      articlesList[index].pubDate!, context)),
+                              Visibility(
+                                  visible: dataDiferente(index),
+                                  child: dataTile(
+                                      articlesList[index].pubDate!, context)),
+                              FeedTile(
+                                feed: Feed(
+                                    data:
+                                        articlesList[index].pubDate!.toString(),
+                                    title: articlesList[index].title!,
+                                    link: articlesList[index].link!),
+                              ),
+                            ],
                           );
                         },
                       ),
@@ -198,4 +195,17 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+Widget dataTile(DateTime data, BuildContext context) {
+  Color corDataTile = Theme.of(context).accentColor.withOpacity(0.9);
+
+  return ListTile(
+    leading: Icon(Icons.calendar_today_outlined, color: corDataTile,size: 22,),
+    title: Text(
+      Jiffy(data).format("dd/MM/yyyy"),
+      style: TextStyle(
+          fontSize: 14, fontWeight: FontWeight.w700, color: corDataTile),
+    ),
+  );
 }

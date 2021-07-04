@@ -1,15 +1,20 @@
 class Changelog{
 
-  static String appVersion = "1.1.0";
+  static String appVersion = "1.2.0";
   static String appName = "Legendas.TV RSS";
 
   static String changelogCurrent = '''  
-1.1.0
-- GNavBar 
-- Mudado Accent
+1.2.0
+- Add Divisões na Home
+- Pequenos Fixes
+- Add Link GitHub
 ''';
 
   static String changelogsOld = '''
+1.1.0
+- GNavBar 
+- Mudado Accent
+
 1.0.0
 - Tecnicamente Funcional
 
