@@ -26,6 +26,7 @@ class _FeedTileState extends State<FeedTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      contentPadding: EdgeInsets.fromLTRB(16, 5, 16, 5),
       onTap: () {
         _launchBrowser(widget.feed.link);
       },

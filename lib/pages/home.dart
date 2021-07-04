@@ -44,14 +44,10 @@ class _HomeState extends State<Home> {
     client.close();
   }
 
-  bool dataDiferente(int index){
-    return Jiffy(articlesList[index == 0
-        ? index
-        : index - 1]
-        .pubDate!)
-        .format("dd/MM/yyyy") !=
-        Jiffy(articlesList[index].pubDate!)
-            .format("dd/MM/yyyy");
+  bool dataDiferente(int index) {
+    return Jiffy(articlesList[index == 0 ? index : index - 1].pubDate!)
+            .format("dd/MM/yyyy") !=
+        Jiffy(articlesList[index].pubDate!).format("dd/MM/yyyy");
   }
 
   @override
@@ -94,10 +90,7 @@ class _HomeState extends State<Home> {
                 child: ListView(
                     physics: AlwaysScrollableScrollPhysics(),
                     children: [
-                      ListView.separated(
-                        separatorBuilder: (context, index) {
-                          return const Divider();
-                        },
+                      ListView.builder(
                         physics: NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemCount: articlesList.length,
@@ -106,12 +99,12 @@ class _HomeState extends State<Home> {
                             children: [
                               Visibility(
                                   visible: index == 0,
-                                  child: dataTile(
-                                      articlesList[index].pubDate!, context)),
+                                  child: dataTile(articlesList[index].pubDate!,
+                                      context, index)),
                               Visibility(
                                   visible: dataDiferente(index),
-                                  child: dataTile(
-                                      articlesList[index].pubDate!, context)),
+                                  child: dataTile(articlesList[index].pubDate!,
+                                      context, index)),
                               FeedTile(
                                 feed: Feed(
                                     data:
@@ -147,7 +140,7 @@ class _HomeState extends State<Home> {
               gap: 5,
               activeColor: Theme.of(context).accentColor,
               iconSize: 20,
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               duration: Duration(milliseconds: 400),
               tabBackgroundColor:
                   Theme.of(context).accentColor.withOpacity(0.3),
@@ -202,15 +195,24 @@ class _HomeState extends State<Home> {
   }
 }
 
-Widget dataTile(DateTime data, BuildContext context) {
+Widget dataTile(DateTime data, BuildContext context, int index) {
   Color corDataTile = Theme.of(context).accentColor.withOpacity(0.9);
 
-  return ListTile(
-    leading: Icon(Icons.calendar_today_outlined, color: corDataTile,size: 22,),
-    title: Text(
-      Jiffy(data).format("dd/MM/yyyy"),
-      style: TextStyle(
-          fontSize: 14, fontWeight: FontWeight.w700, color: corDataTile),
-    ),
+  return Column(
+    children: [
+      Visibility(visible: index != 0, child: const Divider()),
+      ListTile(
+        leading: Icon(
+          Icons.calendar_today_outlined,
+          color: corDataTile,
+          size: 22,
+        ),
+        title: Text(
+          Jiffy(data).format("dd/MM/yyyy"),
+          style: TextStyle(
+              fontSize: 14, fontWeight: FontWeight.w700, color: corDataTile),
+        ),
+      ),
+    ],
   );
 }
