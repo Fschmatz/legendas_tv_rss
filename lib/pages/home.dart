@@ -164,7 +164,7 @@ class _HomeState extends State<Home> {
                   text: 'Cartoons',
                 ),
                 GButton(
-                  icon: Icons.access_time_outlined,
+                  icon: Icons.watch_later_outlined,
                   text: 'Novidades',
                 ),
               ],

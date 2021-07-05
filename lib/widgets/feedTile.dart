@@ -16,7 +16,7 @@ class _FeedTileState extends State<FeedTile> {
 
   //URL LAUNCHER
   _launchBrowser(String url) async {
-    if (await launch(url)) {
+    if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'Error';
@@ -26,7 +26,7 @@ class _FeedTileState extends State<FeedTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.fromLTRB(16, 5, 16, 5),
+      contentPadding: EdgeInsets.fromLTRB(16, 7, 16, 7),
       onTap: () {
         _launchBrowser(widget.feed.link);
       },

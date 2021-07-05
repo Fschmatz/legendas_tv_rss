@@ -3,10 +3,11 @@ import 'package:legendas_tv_rss/util/changelog.dart';
 
 class ChangelogPage extends StatelessWidget {
 
-  Color themeColorApp = Color(0xFF3AA680);
-
   @override
   Widget build(BuildContext context) {
+
+    Color themeColorApp = Theme.of(context).accentColor;
+
     return Scaffold(
         appBar: AppBar(
           title: Text("Changelog"),
