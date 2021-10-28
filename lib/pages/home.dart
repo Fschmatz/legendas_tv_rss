@@ -35,7 +35,23 @@ class _HomeState extends State<Home> {
 
   Future<void> getRssData(String feedUrl) async {
     var client = http.Client();
-    var response = await client.get(Uri.parse(feedUrl));
+    var response = await client.get(Uri.parse(feedUrl)).timeout(
+      const Duration(seconds: 15),
+      onTimeout: () {
+        throw ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          behavior: SnackBarBehavior.floating,
+          content: const Text('Loading Error'),
+          duration: const Duration(seconds: 10),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          action: SnackBarAction(
+            label: 'RETRY',
+            onPressed: () => getRssData(feedUrl),
+          ),
+        ));
+      },
+    );
     var channel = RssFeed.parse(response.body);
     setState(() {
       articlesList = channel.items!.toList();
@@ -54,7 +70,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
         title: Text('Legendas.TV'),
         actions: [
           IconButton(
@@ -64,7 +79,7 @@ class _HomeState extends State<Home> {
                     .textTheme
                     .headline6!
                     .color!
-                    .withOpacity(0.7),
+                    .withOpacity(0.8),
               ),
               onPressed: () {
                 Navigator.push(
@@ -81,12 +96,12 @@ class _HomeState extends State<Home> {
         child: loading
             ? Center(
                 child: CircularProgressIndicator(
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
               )
             : RefreshIndicator(
                 onRefresh: () => getRssData(feedSelecionado),
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.primary,
                 child: ListView(
                     physics: AlwaysScrollableScrollPhysics(),
                     children: [
@@ -130,20 +145,20 @@ class _HomeState extends State<Home> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
             child: GNav(
-              rippleColor: Theme.of(context).accentColor.withOpacity(0.4),
-              hoverColor: Theme.of(context).accentColor.withOpacity(0.4),
+              rippleColor: Theme.of(context).colorScheme.primary.withOpacity(0.4),
+              hoverColor: Theme.of(context).colorScheme.primary.withOpacity(0.4),
               color: Theme.of(context)
                   .textTheme
                   .headline6!
                   .color!
                   .withOpacity(0.7),
-              gap: 5,
-              activeColor: Theme.of(context).accentColor,
+              gap: 8,
+              activeColor: Theme.of(context).colorScheme.primary,
               iconSize: 20,
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               duration: Duration(milliseconds: 400),
               tabBackgroundColor:
-                  Theme.of(context).accentColor.withOpacity(0.3),
+                  Theme.of(context).colorScheme.primary.withOpacity(0.3),
               backgroundColor:
                   Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
               tabs: [
@@ -196,7 +211,7 @@ class _HomeState extends State<Home> {
 }
 
 Widget dataTile(DateTime data, BuildContext context, int index) {
-  Color corDataTile = Theme.of(context).accentColor.withOpacity(0.9);
+  Color corDataTile = Theme.of(context).colorScheme.primary.withOpacity(0.9);
 
   return Column(
     children: [

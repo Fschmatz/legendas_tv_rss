@@ -22,12 +22,11 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
 
-    Color themeColorApp = Theme.of(context).accentColor;
+    Color themeColorApp = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
         appBar: AppBar(
           title: Text("Configurações"),
-          elevation: 0,
         ),
         body: SingleChildScrollView(
           child: Column(

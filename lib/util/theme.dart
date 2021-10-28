@@ -4,48 +4,69 @@ import 'package:shared_preferences/shared_preferences.dart';
 //CLARO
 ThemeData light = ThemeData(
     brightness: Brightness.light,
-    primaryColor: Color(0xFFFFFFFF),
-    accentColor: Color(0xFF8bb00e),
-    scaffoldBackgroundColor: Color(0xFFFFFFFF),
-    cardTheme: CardTheme(
-      color: Color(0xFFF1F1F1),
+    primaryColor: Color(0xFFfefcf4),
+    colorScheme: ColorScheme.light(
+      primary: Color(0xFF4e6700),
+      secondary: Color(0xFF5a6146),
+      surface: Color(0xFFe3e4d4),
+      background: Color(0xFFfefcf4),
     ),
+    scaffoldBackgroundColor: Color(0xFFfefcf4),
+    cardTheme: CardTheme(
+      color: Color(0xFFe3e4d4),
+    ),
+    appBarTheme: const AppBarTheme(
+        color: Color(0xFFfefcf4),
+        elevation: 0,
+        iconTheme: IconThemeData(color: Color(0xFF000000)),
+        titleTextStyle: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFF000000))),
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFFF9F9F9),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedIconTheme: IconThemeData(color: Colors.deepPurple),
-      selectedLabelStyle: TextStyle(color: Colors.deepPurple),
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      backgroundColor: Color(0xFFE5E5E5),
+      backgroundColor: Color(0xFFD3D4C4),
+    ),
+    snackBarTheme: const SnackBarThemeData(
+      actionTextColor: Color(0xFF4e6700),
     ),
     bottomAppBarColor: Color(0xFFE6E6E6),
     bottomSheetTheme:
-    BottomSheetThemeData(modalBackgroundColor: Color(0xFFF5F5F5)));
+        BottomSheetThemeData(modalBackgroundColor: Color(0xFFF5F5F5)));
 
 //ESCURO
 ThemeData dark = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Color(0xFF202022),
-    accentColor: Color(0xFFA6C442),// rosa 0xFFD4669D turq- 0xFF67CBA8
-    scaffoldBackgroundColor: Color(0xFF202022),
-    cardTheme: CardTheme(
-      color: Color(0xFF29292B),
+    primaryColor: Color(0xFF202122),
+    colorScheme: ColorScheme.dark(
+      primary: Color(0xFFadd53a),
     ),
+    scaffoldBackgroundColor: Color(0xFF202122),
+    cardTheme: CardTheme(
+      color: Color(0xFF303132),
+    ),
+    appBarTheme: const AppBarTheme(
+        color: Color(0xFF202122),
+        elevation: 0,
+        titleTextStyle: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+            color: Color(0xFFFFFFFF))),
     dialogTheme: DialogTheme(
-      backgroundColor: Color(0xFF29292B),
+      backgroundColor: Color(0xFF303132),
+    ),
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: const Color(0xFFF0F0F0),
+      actionTextColor: Color(0xFFA6C442),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      selectedIconTheme: IconThemeData(color: Color(0xFFA590D5)),
-      selectedLabelStyle: TextStyle(color: Color(0xFFA590D5)),
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      backgroundColor: Color(0xFF151517),
+      backgroundColor: Color(0xFF151617),
     ),
-    bottomAppBarColor: Color(0xFF151517),
+    bottomAppBarColor: Color(0xFF151617),
     bottomSheetTheme:
-    BottomSheetThemeData(modalBackgroundColor: Color(0xFF202022)));
+        BottomSheetThemeData(modalBackgroundColor: Color(0xFF202122)));
 
 class ThemeNotifier extends ChangeNotifier {
   final String key = 'valorTema';
@@ -66,7 +87,7 @@ class ThemeNotifier extends ChangeNotifier {
   }
 
   _initPrefs() async {
-      prefs = await SharedPreferences.getInstance();
+    prefs = await SharedPreferences.getInstance();
   }
 
   _loadFromPrefs() async {
