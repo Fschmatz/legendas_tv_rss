@@ -42,6 +42,7 @@ ThemeData dark = ThemeData(
     primaryColor: Color(0xFF202122),
     colorScheme: ColorScheme.dark(
       primary: Color(0xFFadd53a),
+      secondary: Color(0xFFadd53a),
     ),
     scaffoldBackgroundColor: Color(0xFF202122),
     cardTheme: CardTheme(

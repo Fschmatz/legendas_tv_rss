@@ -52,7 +52,6 @@ class _FeedTileState extends State<FeedTile> {
           style: ElevatedButton.styleFrom(
             elevation: 0,
             primary: Theme.of(context).cardTheme.color,
-            onPrimary: Theme.of(context).accentColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50.0),
             ),

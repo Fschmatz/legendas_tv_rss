@@ -154,7 +154,7 @@ class _HomeState extends State<Home> {
                   .withOpacity(0.7),
               gap: 8,
               activeColor: Theme.of(context).colorScheme.primary,
-              iconSize: 20,
+              iconSize: 22,
               padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
               duration: Duration(milliseconds: 400),
               tabBackgroundColor:
