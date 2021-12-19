@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:http/http.dart' as http;
 import 'package:legendas_tv_rss/classes/feed.dart';
 import 'package:legendas_tv_rss/configs/settingsPage.dart';
@@ -137,74 +136,55 @@ class _HomeState extends State<Home> {
                     ]),
               ),
       ),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          color: Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
-        ),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-            child: GNav(
-              rippleColor: Theme.of(context).colorScheme.primary.withOpacity(0.4),
-              hoverColor: Theme.of(context).colorScheme.primary.withOpacity(0.4),
-              color: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .color!
-                  .withOpacity(0.7),
-              gap: 8,
-              activeColor: Theme.of(context).colorScheme.primary,
-              iconSize: 22,
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-              duration: Duration(milliseconds: 400),
-              tabBackgroundColor:
-                  Theme.of(context).colorScheme.primary.withOpacity(0.3),
-              backgroundColor:
-                  Theme.of(context).bottomNavigationBarTheme.backgroundColor!,
-              tabs: [
-                GButton(
-                  icon: Icons.priority_high_outlined,
-                  text: 'Destaques',
-                ),
-                GButton(
-                  icon: Icons.movie_creation_outlined,
-                  text: 'Filmes',
-                ),
-                GButton(
-                  icon: Icons.tv_outlined,
-                  text: 'Séries',
-                ),
-                GButton(
-                  icon: Icons.brush_outlined,
-                  text: 'Cartoons',
-                ),
-                GButton(
-                  icon: Icons.watch_later_outlined,
-                  text: 'Novidades',
-                ),
-              ],
-              selectedIndex: _currentIndex,
-              onTabChange: (index) {
-                setState(() {
-                  loading = true;
-                  _currentIndex = index;
-                  if (index == 0) {
-                    feedSelecionado = destaques;
-                  } else if (index == 1) {
-                    feedSelecionado = filmes;
-                  } else if (index == 2) {
-                    feedSelecionado = series;
-                  } else if (index == 3) {
-                    feedSelecionado = cartoons;
-                  } else if (index == 4) {
-                    feedSelecionado = novidades;
-                  }
-                });
-                getRssData(feedSelecionado);
-              },
-            ),
+      bottomNavigationBar:
+      NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) {
+          setState(() {
+            loading = true;
+            _currentIndex = index;
+            if (index == 0) {
+              feedSelecionado = destaques;
+            } else if (index == 1) {
+              feedSelecionado = filmes;
+            } else if (index == 2) {
+              feedSelecionado = series;
+            } else if (index == 3) {
+              feedSelecionado = cartoons;
+            } else if (index == 4) {
+              feedSelecionado = novidades;
+            }
+          });
+          getRssData(feedSelecionado);
+        },
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.priority_high_outlined),
+            selectedIcon: Icon(Icons.priority_high,color: Colors.black87,),
+            label: 'Destaques',
           ),
-        ),
+          NavigationDestination(
+            icon: Icon(Icons.movie_creation_outlined),
+            selectedIcon: Icon(Icons.movie_creation,color: Colors.black87,),
+            label: 'Filmes',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.tv_outlined),
+            selectedIcon: Icon(Icons.tv,color: Colors.black87,),
+            label: 'Séries',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.brush_outlined),
+            selectedIcon: Icon(Icons.brush,color: Colors.black87,),
+            label: 'Cartoons',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.watch_later_outlined),
+            selectedIcon: Icon(Icons.watch_later,color: Colors.black87,),
+            label: 'Novidades',
+          ),
+        ],
       ),
     );
   }

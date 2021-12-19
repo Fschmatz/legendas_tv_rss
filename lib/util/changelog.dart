@@ -1,12 +1,13 @@
 class Changelog{
 
-  static String appVersion = "1.2.4";
+  static String appVersion = "1.3.0";
   static String appName = "Legendas.TV RSS";
 
   static String changelogCurrent = '''  
-1.2.4
+1.3.0
 - Bug Fix
 - Timeout
+- UI Changes
 ''';
 
   static String changelogsOld = '''
