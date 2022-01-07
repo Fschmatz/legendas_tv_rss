@@ -7,7 +7,7 @@ ThemeData light = ThemeData(
     primaryColorBrightness: Brightness.dark,
     primaryColor: Color(0xFFfefcf4),
     colorScheme: ColorScheme.light(
-      primary: Color(0xFF4e6700),
+      primary: Color(0xff76990b),
       secondary: Color(0xFF5a6146),
       surface: Color(0xFFe3e4d4),
       background: Color(0xFFfefcf4),
@@ -31,12 +31,12 @@ ThemeData light = ThemeData(
       backgroundColor: Color(0xFFD3D4C4),
     ),
     snackBarTheme: const SnackBarThemeData(
-      actionTextColor: Color(0xFF4e6700),
+      actionTextColor: Color(0xff76990b),
     ),
     bottomAppBarColor: Color(0xFFE6E6E6),
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFFD3D4C4),
-        indicatorColor:  Color(0xFF4e6700),
+        indicatorColor:  Color(0xff76990b),
         iconTheme: MaterialStateProperty.all(
             const IconThemeData(color: Color(0xFF050505),)
         ),
@@ -56,12 +56,12 @@ ThemeData dark = ThemeData(
     ),
     scaffoldBackgroundColor: Color(0xFF202122),
     cardTheme: CardTheme(
-      color: Color(0xFF303132),
+      color: Color(0xFF303233),
     ),
     appBarTheme: const AppBarTheme(
         color: Color(0xFF202122),
         elevation: 0,
-        iconTheme: IconThemeData(color: Color(0xFFCACACA)),
+        iconTheme: IconThemeData(color: Color(0xFFF5F5F5)),
         titleTextStyle: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
@@ -81,10 +81,10 @@ ThemeData dark = ThemeData(
         backgroundColor: const Color(0xFF151617),
         indicatorColor: const Color(0xFFA6C442),
         iconTheme: MaterialStateProperty.all(
-            const IconThemeData(color: Color(0xFFCACACA),)
+            const IconThemeData(color: Color(0xFFEAEAEA),)
         ),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
-            color: Color(0xFFCACACA), fontWeight: FontWeight.w500))),
+            color: Color(0xFFEAEAEA), fontWeight: FontWeight.w500))),
     bottomSheetTheme:
         BottomSheetThemeData(modalBackgroundColor: Color(0xFF202122)));
 

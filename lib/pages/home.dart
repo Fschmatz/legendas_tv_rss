@@ -52,10 +52,12 @@ class _HomeState extends State<Home> {
       },
     );
     var channel = RssFeed.parse(response.body);
-    setState(() {
-      articlesList = channel.items!.toList();
-      loading = false;
-    });
+    if(mounted){
+      setState(() {
+        articlesList = channel.items!.toList();
+        loading = false;
+      });
+    }
     client.close();
   }
 
@@ -68,73 +70,78 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Legendas.TV'),
-        actions: [
-          IconButton(
-              icon: Icon(
-                Icons.settings_outlined,
-                color: Theme.of(context)
-                    .textTheme
-                    .headline6!
-                    .color!
-                    .withOpacity(0.8),
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) => SettingsPage(),
-                      fullscreenDialog: true,
-                    ));
-              }),
-        ],
-      ),
-      body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 500),
-        child: loading
-            ? Center(
-                child: CircularProgressIndicator(
+      body: NestedScrollView(
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return <Widget>[
+            SliverAppBar(
+              title: const Text('Legendas.TV'),
+              pinned: false,
+              floating: true,
+              snap: true,
+              actions: [
+                IconButton(
+                    icon: const Icon(
+                      Icons.settings_outlined,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) =>
+                                SettingsPage(),
+                            fullscreenDialog: true,
+                          ));
+                    }),
+              ],
+            ),
+          ];
+        },
+        body: AnimatedSwitcher(
+          duration: Duration(milliseconds: 500),
+          child: loading
+              ? Center(
+                  child: CircularProgressIndicator(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                )
+              : RefreshIndicator(
+                  onRefresh: () => getRssData(feedSelecionado),
                   color: Theme.of(context).colorScheme.primary,
+                  child: ListView(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      children: [
+                        ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: articlesList.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                Visibility(
+                                    visible: index == 0,
+                                    child: dataTile(articlesList[index].pubDate!,
+                                        context, index)),
+                                Visibility(
+                                    visible: dataDiferente(index),
+                                    child: dataTile(articlesList[index].pubDate!,
+                                        context, index)),
+                                FeedTile(
+                                  feed: Feed(
+                                      data:
+                                          articlesList[index].pubDate!.toString(),
+                                      title: articlesList[index].title!,
+                                      link: articlesList[index].link!),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        )
+                      ]),
                 ),
-              )
-            : RefreshIndicator(
-                onRefresh: () => getRssData(feedSelecionado),
-                color: Theme.of(context).colorScheme.primary,
-                child: ListView(
-                    physics: AlwaysScrollableScrollPhysics(),
-                    children: [
-                      ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: articlesList.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              Visibility(
-                                  visible: index == 0,
-                                  child: dataTile(articlesList[index].pubDate!,
-                                      context, index)),
-                              Visibility(
-                                  visible: dataDiferente(index),
-                                  child: dataTile(articlesList[index].pubDate!,
-                                      context, index)),
-                              FeedTile(
-                                feed: Feed(
-                                    data:
-                                        articlesList[index].pubDate!.toString(),
-                                    title: articlesList[index].title!,
-                                    link: articlesList[index].link!),
-                              ),
-                            ],
-                          );
-                        },
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      )
-                    ]),
-              ),
+        ),
       ),
       bottomNavigationBar:
       Container(
