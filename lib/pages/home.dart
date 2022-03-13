@@ -208,7 +208,7 @@ Widget dataTile(DateTime data, BuildContext context, int index) {
 
   return Column(
     children: [
-      Visibility(visible: index != 0, child: const Divider()),
+      //Visibility(visible: index != 0, child: const Divider()),
       ListTile(
         leading: Icon(
           Icons.calendar_today_outlined,
@@ -218,7 +218,7 @@ Widget dataTile(DateTime data, BuildContext context, int index) {
         title: Text(
           Jiffy(data).format("dd/MM/yyyy"),
           style: TextStyle(
-              fontSize: 14, fontWeight: FontWeight.w700, color: corDataTile),
+              fontSize: 14, fontWeight: FontWeight.w500, color: corDataTile),
         ),
       ),
     ],

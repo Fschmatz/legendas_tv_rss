@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:legendas_tv_rss/util/changelog.dart';
+import 'package:legendas_tv_rss/util/app_details.dart';
 
 class ChangelogPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-
     Color themeColorApp = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
@@ -14,32 +12,25 @@ class ChangelogPage extends StatelessWidget {
         ),
         body: ListView(children: <Widget>[
           ListTile(
-              leading: SizedBox(
-                height: 0.1,
-              ),
-              title: Text("Versão Atual".toUpperCase(),
+              title: Text("Versão Atual",
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
                       color: themeColorApp))),
           ListTile(
             leading: Icon(
               Icons.article_outlined,
             ),
             title: Text(
-              Changelog.changelogCurrent,
+              AppDetails.changelogCurrent,
               style: TextStyle(fontSize: 16),
             ),
           ),
-          Divider(),
           ListTile(
-            leading: SizedBox(
-              height: 0.1,
-            ),
-            title: Text("Versões Anteriores".toUpperCase(),
+            title: Text("Versões Anteriores",
                 style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                     color: themeColorApp)),
           ),
           ListTile(
@@ -47,7 +38,7 @@ class ChangelogPage extends StatelessWidget {
               Icons.article_outlined,
             ),
             title: Text(
-              Changelog.changelogsOld,
+              AppDetails.changelogsOld,
               style: TextStyle(fontSize: 16),
             ),
           ),

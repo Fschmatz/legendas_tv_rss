@@ -1,8 +1,11 @@
+import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:legendas_tv_rss/util/changelog.dart';
+import 'package:legendas_tv_rss/util/app_details.dart';
 import 'package:legendas_tv_rss/util/theme.dart';
 import 'package:provider/provider.dart';
 
+import '../util/dialog_select_theme.dart';
+import '../util/utils_functions.dart';
 import 'appInfoPage.dart';
 import 'changelogPage.dart';
 
@@ -19,9 +22,23 @@ class _SettingsPageState extends State<SettingsPage> {
     super.initState();
   }
 
+  String getThemeStringFormatted() {
+    String theme = EasyDynamicTheme.of(context)
+        .themeMode
+        .toString()
+        .replaceAll('ThemeMode.', '');
+    if (theme == 'system') {
+      theme = 'padrão do sistema';
+    } else if (theme == 'light') {
+      theme = 'claro';
+    } else {
+      theme = 'escuro';
+    }
+    return capitalizeFirstLetterString(theme);
+  }
+
   @override
   Widget build(BuildContext context) {
-
     Color themeColorApp = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
@@ -39,22 +56,40 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               child: ListTile(
                 title: Text(
-                  Changelog.appName + " " + Changelog.appVersion,
+                  AppDetails.appName + " " + AppDetails.appVersion,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 17.5, color: Colors.black),
                 ),
               ),
             ),
-            const Divider(),
             ListTile(
-              leading: SizedBox(height: 0.1,),
-              title:    Text(
-                  "Sobre".toUpperCase(),
+              title: Text("Geral",
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: themeColorApp)
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: themeColorApp)),
+            ),
+            ListTile(
+              onTap: () => showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const DialogSelectTheme();
+                  }),
+              leading: const Icon(Icons.brightness_6_outlined),
+              title: const Text(
+                "Tema do aplicativo",
+                style: TextStyle(fontSize: 16),
               ),
+              subtitle: Text(
+                getThemeStringFormatted(),
+              ),
+            ),
+            ListTile(
+              title: Text("Sobre",
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: themeColorApp)),
             ),
             ListTile(
               leading: Icon(
@@ -73,9 +108,6 @@ class _SettingsPageState extends State<SettingsPage> {
                     ));
               },
             ),
-            const SizedBox(
-              height: 10.0,
-            ),
             ListTile(
               leading: Icon(
                 Icons.article_outlined,
@@ -93,30 +125,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ));
               },
             ),
-            const Divider(),
-            ListTile(
-              leading: SizedBox(height: 0.1,),
-              title:    Text(
-                  "Geral".toUpperCase(),
-                  style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: themeColorApp)
-              ),
-            ),
-            Consumer<ThemeNotifier>(
-              builder: (context, notifier, child) => SwitchListTile(
-                  title: Text(
-                    "Tema Escuro",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  secondary: Icon(Icons.brightness_6_outlined),
-                  activeColor: Colors.blue,
-                  value: notifier.darkTheme,
-                  onChanged: (value) {
-                    notifier.toggleTheme();
-                  }),
-            ),
+
           ],
         ));
   }

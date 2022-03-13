@@ -26,6 +26,9 @@ ThemeData light = ThemeData(
             color: Color(0xFF000000))),
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFFF9F9F9),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(28)),
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: Color(0xFFD3D4C4),
@@ -68,6 +71,9 @@ ThemeData dark = ThemeData(
             color: Color(0xFFFFFFFF))),
     dialogTheme: DialogTheme(
       backgroundColor: Color(0xFF303132),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(28)),
+      ),
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: const Color(0xFFF0F0F0),
@@ -87,37 +93,3 @@ ThemeData dark = ThemeData(
             color: Color(0xFFEAEAEA), fontWeight: FontWeight.w500))),
     bottomSheetTheme:
         BottomSheetThemeData(modalBackgroundColor: Color(0xFF202122)));
-
-class ThemeNotifier extends ChangeNotifier {
-  final String key = 'valorTema';
-  late SharedPreferences prefs;
-  late bool _darkTheme;
-
-  bool get darkTheme => _darkTheme;
-
-  ThemeNotifier() {
-    _darkTheme = true;
-    _loadFromPrefs();
-  }
-
-  toggleTheme() {
-    _darkTheme = !_darkTheme;
-    _saveToPrefs();
-    notifyListeners();
-  }
-
-  _initPrefs() async {
-    prefs = await SharedPreferences.getInstance();
-  }
-
-  _loadFromPrefs() async {
-    await _initPrefs();
-    _darkTheme = prefs.getBool(key) ?? true;
-    notifyListeners();
-  }
-
-  _saveToPrefs() async {
-    await _initPrefs();
-    prefs.setBool(key, _darkTheme);
-  }
-}

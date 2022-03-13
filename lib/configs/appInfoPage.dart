@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:legendas_tv_rss/util/changelog.dart';
+import 'package:legendas_tv_rss/util/app_details.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AppInfoPage extends StatelessWidget {
-
-  _launchGithub()  {
-    const url = 'https://github.com/Fschmatz/legendas_tv_rss';
+  _launchGithub() {
+    String url = AppDetails.repositoryLink;
     launch(url);
   }
 
   @override
   Widget build(BuildContext context) {
-
     Color themeColorApp = Theme.of(context).colorScheme.primary;
 
     return Scaffold(
@@ -30,26 +28,22 @@ class AppInfoPage extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           Center(
-            child: Text(Changelog.appName +" "+ Changelog.appVersion,
+            child: Text(AppDetails.appName + " " + AppDetails.appVersion,
                 style: TextStyle(
                     fontSize: 17,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w500,
                     color: themeColorApp)),
           ),
           const SizedBox(height: 15),
-          const Divider(),
           ListTile(
-            leading: Icon( Icons.info_outline),
-            title: Text("Dev".toUpperCase(),
+            title: Text("Dev",
                 style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                     color: themeColorApp)),
           ),
           ListTile(
-            leading: SizedBox(
-              height: 0.1,
-            ),
+            leading: Icon(Icons.info_outline),
             title: Text(
               "Aplicativo criado usando Flutter e a linguagem Dart, usado para teste e aprendizado.",
               style: TextStyle(
@@ -57,34 +51,27 @@ class AppInfoPage extends StatelessWidget {
               ),
             ),
           ),
-          const Divider(),
           ListTile(
-            leading: SizedBox(
-              height: 0.1,
-            ),
-            title: Text("Source Code".toUpperCase(),
+            title: Text("Source Code",
                 style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                     color: themeColorApp)),
           ),
           ListTile(
-            onTap: () {_launchGithub();},
+            onTap: () {
+              _launchGithub();
+            },
             leading: Icon(Icons.open_in_new_outlined),
             title: Text("View on GitHub",
                 style: TextStyle(
-                    decoration: TextDecoration.underline,
-                    color: Colors.blue)),
+                    decoration: TextDecoration.underline, color: Colors.blue)),
           ),
-          const Divider(),
           ListTile(
-            leading: SizedBox(
-              height: 0.1,
-            ),
-            title: Text("Quote".toUpperCase(),
+            title: Text("Quote",
                 style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                     color: themeColorApp)),
           ),
           ListTile(
@@ -94,7 +81,9 @@ class AppInfoPage extends StatelessWidget {
               style: TextStyle(fontSize: 16),
             ),
           ),
-          const SizedBox(height: 30,)
+          const SizedBox(
+            height: 30,
+          )
         ]));
   }
 }

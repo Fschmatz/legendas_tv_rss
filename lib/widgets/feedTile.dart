@@ -26,38 +26,18 @@ class _FeedTileState extends State<FeedTile> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.fromLTRB(16, 7, 16, 7),
+      contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 5),
       onTap: () {
         _launchBrowser(widget.feed.link);
+      },
+      onLongPress: () {
+        Share.share(widget.feed.link);
       },
       title:Text(
         widget.feed.title,
         style: TextStyle(fontSize: 16),
       ),
-      trailing:Container(
-        width: 55,
-        child: TextButton(
-          onPressed: () {
-            Share.share(widget.feed.link);
-          },
-          child: Icon(
-            Icons.share_outlined,
-            size: 20,
-            color: Theme.of(context)
-                .textTheme
-                .headline6!
-                .color!
-                .withOpacity(0.6),
-          ),
-          style: ElevatedButton.styleFrom(
-            elevation: 0,
-            primary: Theme.of(context).cardTheme.color,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.0),
-            ),
-          ),
-        ),
-      ),
+
     );
   }
 }
