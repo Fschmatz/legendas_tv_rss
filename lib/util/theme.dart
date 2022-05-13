@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 ThemeData light = ThemeData(
+    useMaterial3: true,
     brightness: Brightness.light,
     primaryColor: Color(0xFFfefcf4),
     colorScheme: ColorScheme.light(
@@ -46,6 +47,7 @@ ThemeData light = ThemeData(
         BottomSheetThemeData(modalBackgroundColor: Color(0xFFF5F5F5)));
 
 ThemeData dark = ThemeData(
+    useMaterial3: true,
     brightness: Brightness.dark,
     primaryColor: Color(0xFF202122),
     colorScheme: ColorScheme.dark(
