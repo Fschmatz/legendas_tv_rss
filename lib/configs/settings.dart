@@ -1,13 +1,10 @@
 import 'package:easy_dynamic_theme/easy_dynamic_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:legendas_tv_rss/util/app_details.dart';
-import 'package:legendas_tv_rss/util/theme.dart';
-import 'package:provider/provider.dart';
-
 import '../util/dialog_select_theme.dart';
 import '../util/utils_functions.dart';
-import 'appInfoPage.dart';
-import 'changelogPage.dart';
+import 'app_info.dart';
+import 'changelog.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -97,14 +94,12 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               title: Text(
                 "Informações",
-                style: TextStyle(fontSize: 16),
               ),
               onTap: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute<void>(
+                    MaterialPageRoute(
                       builder: (BuildContext context) => AppInfoPage(),
-                      fullscreenDialog: true,
                     ));
               },
             ),
@@ -114,18 +109,15 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               title: Text(
                 "Changelog",
-                style: TextStyle(fontSize: 16),
               ),
               onTap: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute<void>(
+                    MaterialPageRoute(
                       builder: (BuildContext context) => ChangelogPage(),
-                      fullscreenDialog: true,
                     ));
               },
             ),
-
           ],
         ));
   }

@@ -1,11 +1,11 @@
 class AppDetails{
 
-  static String appVersion = "1.4.0";
+  static String appVersion = "1.4.1";
   static String appName = "Legendas.TV RSS";
   static String repositoryLink = "https://github.com/Fschmatz/legendas_tv_rss";
 
   static String changelogCurrent = '''  
-1.4.0
+1.4.1
 - Tema Padrão do Sistema
 - UI Changes
 ''';

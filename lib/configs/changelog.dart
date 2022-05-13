@@ -23,7 +23,6 @@ class ChangelogPage extends StatelessWidget {
             ),
             title: Text(
               AppDetails.changelogCurrent,
-              style: TextStyle(fontSize: 16),
             ),
           ),
           ListTile(
@@ -39,7 +38,6 @@ class ChangelogPage extends StatelessWidget {
             ),
             title: Text(
               AppDetails.changelogsOld,
-              style: TextStyle(fontSize: 16),
             ),
           ),
         ]));

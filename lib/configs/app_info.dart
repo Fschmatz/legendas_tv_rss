@@ -3,9 +3,12 @@ import 'package:legendas_tv_rss/util/app_details.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AppInfoPage extends StatelessWidget {
-  _launchGithub() {
-    String url = AppDetails.repositoryLink;
-    launch(url);
+
+  _launchGithub() async {
+    launchUrl(
+      Uri.parse(AppDetails.repositoryLink),
+      mode: LaunchMode.externalApplication,
+    );
   }
 
   @override
@@ -46,13 +49,10 @@ class AppInfoPage extends StatelessWidget {
             leading: Icon(Icons.info_outline),
             title: Text(
               "Aplicativo criado usando Flutter e a linguagem Dart, usado para teste e aprendizado.",
-              style: TextStyle(
-                fontSize: 16,
-              ),
             ),
           ),
           ListTile(
-            title: Text("Source Code",
+            title: Text("Código Fonte",
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -63,7 +63,7 @@ class AppInfoPage extends StatelessWidget {
               _launchGithub();
             },
             leading: Icon(Icons.open_in_new_outlined),
-            title: Text("View on GitHub",
+            title: Text("Ver no Github",
                 style: TextStyle(
                     decoration: TextDecoration.underline, color: Colors.blue)),
           ),
@@ -78,12 +78,8 @@ class AppInfoPage extends StatelessWidget {
             leading: Icon(Icons.messenger_outline),
             title: Text(
               "I've seen things you people wouldn't believe.\nAttack ships on fire off the shoulder of Orion.\nI watched c-beams glitter in the dark near the Tannhäuser Gate.\nAll those moments will be lost in time, like tears in rain. Time to die.\n\nRoy Batty - Rutger Hauer",
-              style: TextStyle(fontSize: 16),
             ),
           ),
-          const SizedBox(
-            height: 30,
-          )
         ]));
   }
 }

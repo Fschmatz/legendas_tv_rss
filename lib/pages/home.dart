@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:legendas_tv_rss/classes/feed.dart';
-import 'package:legendas_tv_rss/configs/settingsPage.dart';
+import 'package:legendas_tv_rss/configs/settings.dart';
 import 'package:legendas_tv_rss/widgets/feedTile.dart';
 import 'package:webfeed/webfeed.dart';
 import 'package:jiffy/jiffy.dart';
@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
       },
     );
     var channel = RssFeed.parse(response.body);
-    if(mounted){
+    if (mounted) {
       setState(() {
         articlesList = channel.items!.toList();
         loading = false;
@@ -86,10 +86,8 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       Navigator.push(
                           context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                SettingsPage(),
-                            fullscreenDialog: true,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => SettingsPage(),
                           ));
                     }),
               ],
@@ -97,7 +95,7 @@ class _HomeState extends State<Home> {
           ];
         },
         body: AnimatedSwitcher(
-          duration: Duration(milliseconds: 500),
+          duration: Duration(milliseconds: 600),
           child: loading
               ? Center(
                   child: CircularProgressIndicator(
@@ -119,16 +117,21 @@ class _HomeState extends State<Home> {
                               children: [
                                 Visibility(
                                     visible: index == 0,
-                                    child: dataTile(articlesList[index].pubDate!,
-                                        context, index)),
+                                    child: dataTile(
+                                        articlesList[index].pubDate!,
+                                        context,
+                                        index)),
                                 Visibility(
                                     visible: dataDiferente(index),
-                                    child: dataTile(articlesList[index].pubDate!,
-                                        context, index)),
+                                    child: dataTile(
+                                        articlesList[index].pubDate!,
+                                        context,
+                                        index)),
                                 FeedTile(
                                   feed: Feed(
-                                      data:
-                                          articlesList[index].pubDate!.toString(),
+                                      data: articlesList[index]
+                                          .pubDate!
+                                          .toString(),
                                       title: articlesList[index].title!,
                                       link: articlesList[index].link!),
                                 ),
@@ -143,8 +146,7 @@ class _HomeState extends State<Home> {
                 ),
         ),
       ),
-      bottomNavigationBar:
-      Container(
+      bottomNavigationBar: Container(
         color: Theme.of(context).navigationBarTheme.backgroundColor,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -172,27 +174,42 @@ class _HomeState extends State<Home> {
             destinations: const [
               NavigationDestination(
                 icon: Icon(Icons.priority_high_outlined),
-                selectedIcon: Icon(Icons.priority_high,color: Colors.black87,),
+                selectedIcon: Icon(
+                  Icons.priority_high,
+                  color: Colors.black87,
+                ),
                 label: 'Destaques',
               ),
               NavigationDestination(
                 icon: Icon(Icons.movie_creation_outlined),
-                selectedIcon: Icon(Icons.movie_creation,color: Colors.black87,),
+                selectedIcon: Icon(
+                  Icons.movie_creation,
+                  color: Colors.black87,
+                ),
                 label: 'Filmes',
               ),
               NavigationDestination(
                 icon: Icon(Icons.tv_outlined),
-                selectedIcon: Icon(Icons.tv,color: Colors.black87,),
+                selectedIcon: Icon(
+                  Icons.tv,
+                  color: Colors.black87,
+                ),
                 label: 'Séries',
               ),
               NavigationDestination(
                 icon: Icon(Icons.brush_outlined),
-                selectedIcon: Icon(Icons.brush,color: Colors.black87,),
+                selectedIcon: Icon(
+                  Icons.brush,
+                  color: Colors.black87,
+                ),
                 label: 'Cartoons',
               ),
               NavigationDestination(
                 icon: Icon(Icons.watch_later_outlined),
-                selectedIcon: Icon(Icons.watch_later,color: Colors.black87,),
+                selectedIcon: Icon(
+                  Icons.watch_later,
+                  color: Colors.black87,
+                ),
                 label: 'Novidades',
               ),
             ],

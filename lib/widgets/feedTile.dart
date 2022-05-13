@@ -14,13 +14,11 @@ class FeedTile extends StatefulWidget {
 
 class _FeedTileState extends State<FeedTile> {
 
-  //URL LAUNCHER
   _launchBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Error';
-    }
+    launchUrl(
+      Uri.parse(url),
+      mode: LaunchMode.externalApplication,
+    );
   }
 
   @override
