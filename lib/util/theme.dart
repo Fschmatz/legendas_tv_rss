@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 ThemeData light = ThemeData(
     useMaterial3: true,
+    textTheme: const TextTheme(
+      titleMedium: TextStyle(fontWeight: FontWeight.w400),
+    ),
     brightness: Brightness.light,
     primaryColor: Color(0xFFfefcf4),
     colorScheme: ColorScheme.light(
@@ -15,6 +18,7 @@ ThemeData light = ThemeData(
       color: Color(0xFFe3e4d4),
     ),
     appBarTheme: const AppBarTheme(
+        surfaceTintColor: Color(0xFFfefcf4),
         color: Color(0xFFfefcf4),
         elevation: 0,
         iconTheme: IconThemeData(color: Color(0xFF000000)),
@@ -37,10 +41,10 @@ ThemeData light = ThemeData(
     bottomAppBarColor: Color(0xFFE6E6E6),
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFFD3D4C4),
-        indicatorColor:  Color(0xff76990b),
-        iconTheme: MaterialStateProperty.all(
-            const IconThemeData(color: Color(0xFF050505),)
-        ),
+        indicatorColor: Color(0xff76990b),
+        iconTheme: MaterialStateProperty.all(const IconThemeData(
+          color: Color(0xFF050505),
+        )),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
             color: Color(0xFF050505), fontWeight: FontWeight.w500))),
     bottomSheetTheme:
@@ -48,6 +52,9 @@ ThemeData light = ThemeData(
 
 ThemeData dark = ThemeData(
     useMaterial3: true,
+    textTheme: const TextTheme(
+      titleMedium: TextStyle(fontWeight: FontWeight.w400),
+    ),
     brightness: Brightness.dark,
     primaryColor: Color(0xFF202122),
     colorScheme: ColorScheme.dark(
@@ -59,6 +66,7 @@ ThemeData dark = ThemeData(
       color: Color(0xFF303233),
     ),
     appBarTheme: const AppBarTheme(
+        surfaceTintColor: Color(0xFF202122),
         color: Color(0xFF202122),
         elevation: 0,
         iconTheme: IconThemeData(color: Color(0xFFFFFFFF)),
@@ -83,9 +91,9 @@ ThemeData dark = ThemeData(
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFF28292A),
         indicatorColor: const Color(0xFFA6C442),
-        iconTheme: MaterialStateProperty.all(
-            const IconThemeData(color: Color(0xFFEAEAEA),)
-        ),
+        iconTheme: MaterialStateProperty.all(const IconThemeData(
+          color: Color(0xFFEAEAEA),
+        )),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
             color: Color(0xFFEAEAEA), fontWeight: FontWeight.w500))),
     bottomSheetTheme:

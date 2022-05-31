@@ -24,6 +24,13 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   List<RssItem> articlesList = [];
   bool loading = true;
+  List<String> feedSelecionadoSelect = [
+    destaques,
+    filmes,
+    series,
+    cartoons,
+    novidades
+  ];
 
   @override
   void initState() {
@@ -148,72 +155,59 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: Container(
         color: Theme.of(context).navigationBarTheme.backgroundColor,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: NavigationBar(
-            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-            selectedIndex: _currentIndex,
-            onDestinationSelected: (index) {
-              setState(() {
-                loading = true;
-                _currentIndex = index;
-                if (index == 0) {
-                  feedSelecionado = destaques;
-                } else if (index == 1) {
-                  feedSelecionado = filmes;
-                } else if (index == 2) {
-                  feedSelecionado = series;
-                } else if (index == 3) {
-                  feedSelecionado = cartoons;
-                } else if (index == 4) {
-                  feedSelecionado = novidades;
-                }
-              });
-              getRssData(feedSelecionado);
-            },
-            destinations: const [
-              NavigationDestination(
-                icon: Icon(Icons.priority_high_outlined),
-                selectedIcon: Icon(
-                  Icons.priority_high,
-                  color: Colors.black87,
-                ),
-                label: 'Destaques',
+        child: NavigationBar(
+          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+          selectedIndex: _currentIndex,
+          onDestinationSelected: (index) {
+            setState(() {
+              loading = true;
+              _currentIndex = index;
+              feedSelecionado = feedSelecionadoSelect[index];
+            });
+            getRssData(feedSelecionado);
+          },
+          destinations: const [
+            NavigationDestination(
+              icon: Icon(Icons.priority_high_outlined),
+              selectedIcon: Icon(
+                Icons.priority_high,
+                color: Colors.black87,
               ),
-              NavigationDestination(
-                icon: Icon(Icons.movie_creation_outlined),
-                selectedIcon: Icon(
-                  Icons.movie_creation,
-                  color: Colors.black87,
-                ),
-                label: 'Filmes',
+              label: 'Destaques',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.movie_creation_outlined),
+              selectedIcon: Icon(
+                Icons.movie_creation,
+                color: Colors.black87,
               ),
-              NavigationDestination(
-                icon: Icon(Icons.tv_outlined),
-                selectedIcon: Icon(
-                  Icons.tv,
-                  color: Colors.black87,
-                ),
-                label: 'Séries',
+              label: 'Filmes',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.tv_outlined),
+              selectedIcon: Icon(
+                Icons.tv,
+                color: Colors.black87,
               ),
-              NavigationDestination(
-                icon: Icon(Icons.brush_outlined),
-                selectedIcon: Icon(
-                  Icons.brush,
-                  color: Colors.black87,
-                ),
-                label: 'Cartoons',
+              label: 'Séries',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.brush_outlined),
+              selectedIcon: Icon(
+                Icons.brush,
+                color: Colors.black87,
               ),
-              NavigationDestination(
-                icon: Icon(Icons.watch_later_outlined),
-                selectedIcon: Icon(
-                  Icons.watch_later,
-                  color: Colors.black87,
-                ),
-                label: 'Novidades',
+              label: 'Cartoons',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.watch_later_outlined),
+              selectedIcon: Icon(
+                Icons.watch_later,
+                color: Colors.black87,
               ),
-            ],
-          ),
+              label: 'Novidades',
+            ),
+          ],
         ),
       ),
     );

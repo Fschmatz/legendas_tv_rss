@@ -1,13 +1,14 @@
 class AppDetails{
 
-  static String appVersion = "1.4.1";
+  static String appVersion = "1.4.2";
   static String appName = "Legendas.TV RSS";
   static String repositoryLink = "https://github.com/Fschmatz/legendas_tv_rss";
 
   static String changelogCurrent = '''  
-1.4.1
+1.4.2
 - Tema Padrão do Sistema
 - UI Changes
+- Flutter 3 Update
 ''';
 
   static String changelogsOld = '''
