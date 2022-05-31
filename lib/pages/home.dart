@@ -153,62 +153,59 @@ class _HomeState extends State<Home> {
                 ),
         ),
       ),
-      bottomNavigationBar: Container(
-        color: Theme.of(context).navigationBarTheme.backgroundColor,
-        child: NavigationBar(
-          labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-          selectedIndex: _currentIndex,
-          onDestinationSelected: (index) {
-            setState(() {
-              loading = true;
-              _currentIndex = index;
-              feedSelecionado = feedSelecionadoSelect[index];
-            });
-            getRssData(feedSelecionado);
-          },
-          destinations: const [
-            NavigationDestination(
-              icon: Icon(Icons.priority_high_outlined),
-              selectedIcon: Icon(
-                Icons.priority_high,
-                color: Colors.black87,
-              ),
-              label: 'Destaques',
+      bottomNavigationBar: NavigationBar(
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+        selectedIndex: _currentIndex,
+        onDestinationSelected: (index) {
+          setState(() {
+            loading = true;
+            _currentIndex = index;
+            feedSelecionado = feedSelecionadoSelect[index];
+          });
+          getRssData(feedSelecionado);
+        },
+        destinations: const [
+          NavigationDestination(
+            icon: Icon(Icons.priority_high_outlined),
+            selectedIcon: Icon(
+              Icons.priority_high,
+              color: Colors.black87,
             ),
-            NavigationDestination(
-              icon: Icon(Icons.movie_creation_outlined),
-              selectedIcon: Icon(
-                Icons.movie_creation,
-                color: Colors.black87,
-              ),
-              label: 'Filmes',
+            label: 'Destaques',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.movie_creation_outlined),
+            selectedIcon: Icon(
+              Icons.movie_creation,
+              color: Colors.black87,
             ),
-            NavigationDestination(
-              icon: Icon(Icons.tv_outlined),
-              selectedIcon: Icon(
-                Icons.tv,
-                color: Colors.black87,
-              ),
-              label: 'Séries',
+            label: 'Filmes',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.tv_outlined),
+            selectedIcon: Icon(
+              Icons.tv,
+              color: Colors.black87,
             ),
-            NavigationDestination(
-              icon: Icon(Icons.brush_outlined),
-              selectedIcon: Icon(
-                Icons.brush,
-                color: Colors.black87,
-              ),
-              label: 'Cartoons',
+            label: 'Séries',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.brush_outlined),
+            selectedIcon: Icon(
+              Icons.brush,
+              color: Colors.black87,
             ),
-            NavigationDestination(
-              icon: Icon(Icons.watch_later_outlined),
-              selectedIcon: Icon(
-                Icons.watch_later,
-                color: Colors.black87,
-              ),
-              label: 'Novidades',
+            label: 'Cartoons',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.watch_later_outlined),
+            selectedIcon: Icon(
+              Icons.watch_later,
+              color: Colors.black87,
             ),
-          ],
-        ),
+            label: 'Novidades',
+          ),
+        ],
       ),
     );
   }
