@@ -90,11 +90,11 @@ ThemeData dark = ThemeData(
     bottomAppBarColor: Color(0xFF28292A),
     navigationBarTheme: NavigationBarThemeData(
         backgroundColor: const Color(0xFF28292A),
-        indicatorColor: const Color(0xFFA6C442),
+        indicatorColor: const Color(0xff677931),
         iconTheme: MaterialStateProperty.all(const IconThemeData(
-          color: Color(0xFFEAEAEA),
+          color: Color(0xFFEBEBEA),
         )),
         labelTextStyle: MaterialStateProperty.all(const TextStyle(
-            color: Color(0xFFEAEAEA), fontWeight: FontWeight.w500))),
+            color: Color(0xFFEBEBEA), fontWeight: FontWeight.w500))),
     bottomSheetTheme:
         BottomSheetThemeData(modalBackgroundColor: Color(0xFF202122)));
